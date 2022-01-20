@@ -1,7 +1,7 @@
-package com.itemis.mgttg.knowledge;
+package com.itemis.mgttg.model;
 import java.util.HashMap;
 import com.itemis.mgttg.exceptions.MineralPriceException;
-
+//TODO comment for doc
 public class Minerals {
     HashMap<String, Float> minerals;
     public Minerals(){
@@ -18,5 +18,8 @@ public class Minerals {
     }
     public void updatePrice(String mineral, float value){
         minerals.put(mineral, value);
+    }
+    public float getPrice(String mineral){
+        return minerals.get(mineral);
     }
 }

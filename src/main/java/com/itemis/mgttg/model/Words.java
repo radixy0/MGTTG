@@ -1,7 +1,7 @@
-package com.itemis.mgttg.knowledge;
+package com.itemis.mgttg.model;
 import java.util.HashMap;
 import com.itemis.mgttg.exceptions.WordAlreadyExistsException;
-
+//TODO Comment for doc
 public class Words {
     HashMap<String, Character> words;
     public Words(){
@@ -18,5 +18,8 @@ public class Words {
     }
     public void changeValue(String word, char value){
         words.put(word, value);
+    }
+    public char getValue(String word){
+        return words.get(word);
     }
 }
