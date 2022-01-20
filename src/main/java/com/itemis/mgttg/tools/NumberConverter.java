@@ -3,43 +3,42 @@ import java.util.HashMap;
 
 public class NumberConverter {
 
-    //TODO: find better way of going roman to int, so both methods can be static
+    //TODO: find prettier way of converting roman to int
 
-    static HashMap<Character, Integer> intToRomanMap = new HashMap<>();
+    static HashMap<Character, Integer> romanToIntMap = new HashMap<>();
     static{
-        intToRomanMap.put('I',1);
-        intToRomanMap.put('V',5);
-        intToRomanMap.put('X',10);
-        intToRomanMap.put('L',50);
-        intToRomanMap.put('C',100);
-        intToRomanMap.put('D',500);
-        intToRomanMap.put('M',1000);
+        romanToIntMap.put('I',1);
+        romanToIntMap.put('V',5);
+        romanToIntMap.put('X',10);
+        romanToIntMap.put('L',50);
+        romanToIntMap.put('C',100);
+        romanToIntMap.put('D',500);
+        romanToIntMap.put('M',1000);
     }
 
     /**
-     * Converts Roman numeral String to Int
+     * Converts valid Roman numeral String to Int
      * @param roman - Roman numeral String
      * @return integer representation
      */
-    public int romanToInt(String roman){
+    public static int romanToInt(String roman){
         int sum=0;
-
+        //validate input
         if(roman.isEmpty()){return 0;}
-
+        if(RomanNumeralValidator.containsIllegalLetters(roman)){
+            throw new IllegalArgumentException("Roman numeral seems to contain illegal letters");
+        }
         for(int i=0; i<roman.length(); i++){
             char current = roman.charAt(i);
-            if(!(intToRomanMap.containsKey(current))){
-                throw new RuntimeException("Unknown Character in Roman Numeral");
-            }
             if(i!=roman.length()-1){
                 char next = roman.charAt(i+1);
-                if(intToRomanMap.get(current) < intToRomanMap.get(next)){
-                    sum-=intToRomanMap.get(current);
+                if(romanToIntMap.get(current) < romanToIntMap.get(next)){
+                    sum-= romanToIntMap.get(current);
                 } else {
-                    sum+=intToRomanMap.get(current);
+                    sum+= romanToIntMap.get(current);
                 }
             } else {
-                sum+=intToRomanMap.get(current);
+                sum+= romanToIntMap.get(current);
             }
         }
         return sum;
@@ -50,7 +49,7 @@ public class NumberConverter {
      * @param num integer to convert
      * @return Roman numeral String
      */
-    public String intToRoman(int num){
+    public static String intToRoman(int num){
         return "I".repeat(num)
                 .replace("IIIII", "V")
                 .replace("IIII", "IV")

@@ -3,32 +3,37 @@ package com.itemis.mgttg.tools;
 import static org.junit.jupiter.api.Assertions.*;
 
 class NumberConverterTest {
-    NumberConverter converter = new NumberConverter();
 
-    //empty string, random number, false char
     @org.junit.jupiter.api.Test
     void emptyRomanShouldReturnZero() {
-        assertEquals(0, converter.romanToInt(""));
+        assertEquals(0, NumberConverter.romanToInt(""));
     }
     @org.junit.jupiter.api.Test
     void MCMXCIVromanShouldEqualNineteenNinetyFour() {
-        assertEquals(1994, converter.romanToInt("MCMXCIV"));
+        assertEquals(1994, NumberConverter.romanToInt("MCMXCIV"));
     }
 
     @org.junit.jupiter.api.Test
-    void falseCharInRomanShouldThrowException() {
-        assertThrows(RuntimeException.class,
+    void falseCharInRomanShouldThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class,
                 () -> {
-                    converter.romanToInt("MCMACIV");
+                    NumberConverter.romanToInt("MCMACIV");
                 });
     }
 
     @org.junit.jupiter.api.Test
-    void romanToInt() {
-
+    void zeroToRomanShouldReturnEmptyString() {
+        assertEquals("", NumberConverter.intToRoman(0));
     }
-
     @org.junit.jupiter.api.Test
-    void intToRoman() {
+    void negativeToRomanShouldThrowIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    NumberConverter.intToRoman(-1);
+                });
+    }
+    @org.junit.jupiter.api.Test
+    void nineteenNinetyFourToRomanShouldEqualMCMXCIV() {
+        assertEquals("MCMXCIV", NumberConverter.intToRoman(1994));
     }
 }
