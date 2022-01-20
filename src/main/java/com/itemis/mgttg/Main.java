@@ -1,4 +1,4 @@
-package com.itemis.MGTTG;
+package com.itemis.mgttg;
 
 public class Main {
     public static void main(String[] args) {
