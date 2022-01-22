@@ -54,12 +54,7 @@ class RomanNumeralValidatorTest {
     //X only subtracted from L and C
     @Test
     void containsIllegalCombinations_InvalidXSubstractionShouldBeTrue() {
-        assertTrue(RomanNumeralValidator.containsIllegalCombinations("XV"));
-    }
-    //C only substracted from D and M
-    @Test
-    void containsIllegalCombinations_InvalidCSubstractionShouldBeTrue() {
-        assertTrue(RomanNumeralValidator.containsIllegalCombinations("CX"));
+        assertTrue(RomanNumeralValidator.containsIllegalCombinations("XD"));
     }
     //only one small symbol from a large symbol
     @Test

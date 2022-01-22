@@ -64,4 +64,14 @@ public class NumberConverter {
                 .replace("DD", "M")
                 .replace("DCD", "CM");
     }
+
+    /**
+     * Looks up integer value of single roman character, returns null if it doesnt exist
+     * @param roman
+     * @return int value for single roman char, null if it doesnt exist
+     */
+    //TODO test?
+    protected static int romanChartoIntDigit(char roman){
+        return romanToIntMap.get(roman);
+    }
 }
