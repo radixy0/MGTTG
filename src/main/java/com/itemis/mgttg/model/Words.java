@@ -7,16 +7,16 @@ public class Words {
     public Words(){
         words = new HashMap<>();
     }
-    public void learnNewWord(String word, char value) throws WordAlreadyExistsException{
-        if(words.containsKey(word)){
+    public void addWord(String word, char value) throws WordAlreadyExistsException{
+        if(words.containsKey(word) && words.get(word) != value){
             throw new WordAlreadyExistsException("I already know this word as " + words.get(word), word, words.get(word));
         }
         words.put(word, value);
     }
-    public void forgetWord(String word){
+    public void removeWord(String word){
         words.remove(word);
     }
-    public void changeValue(String word, char value){
+    public void updateWord(String word, char value){
         words.put(word, value);
     }
     public char getValue(String word){

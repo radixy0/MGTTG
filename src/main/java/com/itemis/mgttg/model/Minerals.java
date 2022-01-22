@@ -7,13 +7,13 @@ public class Minerals {
     public Minerals(){
         minerals = new HashMap<>();
     }
-    public void add(String mineral, Float value) throws MineralPriceException{
-        if(minerals.containsKey(mineral)){
+    public void addMineral(String mineral, Float value) throws MineralPriceException{
+        if(minerals.containsKey(mineral) && minerals.get(mineral) != value){
             throw new MineralPriceException("The Mineral " + mineral + " already seems to have a different Value of "+value+".", mineral, value);
         }
         minerals.put(mineral, value);
     }
-    public void remove(String mineral){
+    public void removeMineral(String mineral){
         minerals.remove(mineral);
     }
     public void updatePrice(String mineral, float value){
