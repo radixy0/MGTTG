@@ -4,9 +4,11 @@ import com.itemis.mgttg.exceptions.MaterialPriceException;
 import com.itemis.mgttg.exceptions.WordAlreadyExistsException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MainControllerTest {
     MainController mainController;
 
