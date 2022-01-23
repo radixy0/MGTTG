@@ -68,7 +68,7 @@ public class MainController {
      * @return material price as float, null if unknown
      */
     public float getMaterialPrice(String material){
-        return materials.getPrice(material);
+        return materials.getPrice(material.toUpperCase());
     }
 
     /**
@@ -77,7 +77,7 @@ public class MainController {
      * @return Roman value as Character, null if unknown
      */
     public Character getWordsRomanValue(String word){
-        return words.getValue(word);
+        return words.getValue(word.toUpperCase());
     }
 
     /**
@@ -87,7 +87,7 @@ public class MainController {
      * @throws MaterialPriceException if the Material is already known with a different price
      */
     public void addMaterial(String material, float value) throws MaterialPriceException {
-        materials.addMaterial(material, value);
+        materials.addMaterial(material.toUpperCase(), value);
     }
 
     /**
@@ -107,7 +107,7 @@ public class MainController {
      * @throws WordAlreadyExistsException if the word already exists for a different roman Letter
      */
     public void addWord(String word, char romanValue) throws WordAlreadyExistsException{
-        words.addWord(word, romanValue);
+        words.addWord(word.toUpperCase(), Character.toUpperCase(romanValue));
     }
 
     /**
@@ -116,7 +116,7 @@ public class MainController {
      * @param value  Value
      */
     public void updateMaterial(String material, float value){
-        materials.updatePrice(material, value);
+        materials.updatePrice(material.toUpperCase(), value);
     }
 
     /**
@@ -134,7 +134,7 @@ public class MainController {
      * @param romanValue value
      */
     public void updateWord(String word, char romanValue){
-        words.updateWord(word, romanValue);
+        words.updateWord(word.toUpperCase(), Character.toUpperCase(romanValue));
     }
 
     /**
@@ -142,7 +142,7 @@ public class MainController {
      * @param material Material to remove
      */
     public void removeMaterial(String material){
-        materials.removeMaterial(material);
+        materials.removeMaterial(material.toUpperCase());
     }
 
     /**
@@ -150,6 +150,6 @@ public class MainController {
      * @param word Word to remove
      */
     public void removeWord(String word){
-        words.removeWord(word);
+        words.removeWord(word.toUpperCase());
     }
 }
