@@ -1,6 +1,7 @@
 package com.itemis.mgttg.controller;
 import com.itemis.mgttg.model.*;
 import com.itemis.mgttg.exceptions.*;
+import com.itemis.mgttg.tools.NumberConverter;
 
 public class MainController {
     Materials materials;
@@ -18,12 +19,24 @@ public class MainController {
     }
 
     /**
-     * Gets the Price for a mineral String as float
-     * @param mineral the mineral to look up
-     * @return mineral price as float, null if unknown
+     * Calculates the Material price from the Roman amount and the total Value, e.g. XI Iron = 5
+     * @param romanAmount roman amount of sold material
+     * @param material sold material
+     * @param value value of total
+     * @return
      */
-    public float getMineralPrice(String mineral){
-        return materials.getPrice(mineral);
+    public float calculateMaterialPrice(String romanAmount, String material, float value){
+        float romanValue = NumberConverter.romanToInt(romanAmount);
+        return value / romanValue;
+    }
+
+    /**
+     * Gets the Price for a material String as float
+     * @param material the material to look up
+     * @return material price as float, null if unknown
+     */
+    public float getMaterialPrice(String material){
+        return materials.getPrice(material);
     }
 
     /**
@@ -36,23 +49,23 @@ public class MainController {
     }
 
     /**
-     * Adds a new mineral and its price to the Model
-     * @param mineral Mineral String to add
+     * Adds a new material and its price to the Model
+     * @param material Material String to add
      * @param value Price
-     * @throws MaterialPriceException if the Mineral is already known with a different price
+     * @throws MaterialPriceException if the Material is already known with a different price
      */
-    public void addMineral (String mineral, float value) throws MaterialPriceException {
-        materials.addMaterial(mineral, value);
+    public void addMaterial(String material, float value) throws MaterialPriceException {
+        materials.addMaterial(material, value);
     }
 
     /**
-     * Adds a new mineral and its price to the Model
-     * @param mineral Mineral String to add
+     * Adds a new material and its price to the Model
+     * @param material Material String to add
      * @param value Price
-     * @throws MaterialPriceException if the Mineral is already known with a different price
+     * @throws MaterialPriceException if the Material is already known with a different price
      */
-    public void addMineral(String mineral, int value) throws MaterialPriceException {
-        addMineral(mineral, (float) value);
+    public void addMaterial(String material, int value) throws MaterialPriceException {
+        addMaterial(material, (float) value);
     }
 
     /**
@@ -66,21 +79,21 @@ public class MainController {
     }
 
     /**
-     * Updates price for an already known mineral
-     * @param mineral Mineral to update
+     * Updates price for an already known material
+     * @param material Material to update
      * @param value  Value
      */
-    public void updateMineral(String mineral, float value){
-        materials.updatePrice(mineral, value);
+    public void updateMaterial(String material, float value){
+        materials.updatePrice(material, value);
     }
 
     /**
-     * Updates price for an already known mineral
-     * @param mineral Mineral to update
+     * Updates price for an already known material
+     * @param material Material to update
      * @param value  Value
      */
-    public void updateMineral(String mineral, int value){
-        updateMineral(mineral, (float) value);
+    public void updateMaterial(String material, int value){
+        updateMaterial(material, (float) value);
     }
 
     /**
@@ -93,11 +106,11 @@ public class MainController {
     }
 
     /**
-     * Removes a Mineral from model
-     * @param mineral Mineral to remove
+     * Removes a Material from model
+     * @param material Material to remove
      */
-    public void removeMineral(String mineral){
-        materials.removeMaterial(mineral);
+    public void removeMaterial(String material){
+        materials.removeMaterial(material);
     }
 
     /**

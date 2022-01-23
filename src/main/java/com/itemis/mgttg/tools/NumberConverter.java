@@ -66,7 +66,8 @@ public class NumberConverter {
     }
 
     /**
-     * Looks up integer value of single roman character, returns null if it doesnt exist
+     * Looks up integer value of single roman character, returns null if it doesnt exist.
+     * This is package-private as it does NOT check for invalid characters, and is not to be used from outside
      * @param roman
      * @return int value for single roman char, null if it doesnt exist
      */
