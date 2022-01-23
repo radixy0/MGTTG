@@ -2,6 +2,9 @@ package com.itemis.mgttg.controller;
 import com.itemis.mgttg.model.*;
 import com.itemis.mgttg.exceptions.*;
 import com.itemis.mgttg.tools.NumberConverter;
+import com.itemis.mgttg.tools.RomanNumeralValidator;
+
+import java.util.Locale;
 
 public class MainController {
     Materials materials;
@@ -19,14 +22,43 @@ public class MainController {
     }
 
     /**
+     * Calculates int value of an array of alien words, which represent roman numerals
+     * @param words Array of words to convert
+     * @return -1, if a word is unknown. -2, if the represented roman numeral is invalid. >0 otherwise
+     */
+    public int convertAlienWordsToInt(String[] words){
+        //get corresponding romans
+        String romans = "";
+        for(int i=0; i<words.length; i++){
+            if(getWordsRomanValue(words[i]) != null){
+                romans += getWordsRomanValue(words[i]);
+            } else {
+                return -1;
+            }
+        }
+        if(RomanNumeralValidator.containsIllegalCombinations(romans)){
+            return -2;
+        }
+        if(RomanNumeralValidator.containsIllegalLetters(romans)){
+            return -2;
+        }
+        return NumberConverter.romanToInt(romans);
+    }
+
+    /**
      * Calculates the Material price from the Roman amount and the total Value, e.g. XI Iron = 5
      * @param romanAmount roman amount of sold material
-     * @param material sold material
      * @param value value of total
-     * @return
+     * @return -1 if the roman number is invalid, otherwise the price for 1 unit of the material as float
      */
-    public float calculateMaterialPrice(String romanAmount, String material, float value){
-        float romanValue = NumberConverter.romanToInt(romanAmount);
+    public float calculateMaterialPrice(String romanAmount, float value){
+        if(RomanNumeralValidator.containsIllegalCombinations(romanAmount)){
+            return -1;
+        }
+        if(RomanNumeralValidator.containsIllegalLetters(romanAmount)){
+            return -1;
+        }
+        float romanValue = NumberConverter.romanToInt(romanAmount.toUpperCase());
         return value / romanValue;
     }
 
