@@ -3,8 +3,7 @@ package com.itemis.mgttg.model;
 import com.itemis.mgttg.exceptions.WordAlreadyExistsException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class WordsTest {
     @Test
@@ -65,5 +64,17 @@ class WordsTest {
 
         }
         assertEquals('V', words.getValue("blargh"));
+    }
+
+    @Test
+    void clearWords_shouldBeEmptyAfter() {
+        Words words = new Words();
+        try{
+            words.addWord("blargh", 'V');
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        words.clearWords();
+        assertTrue(words.words.isEmpty());
     }
 }

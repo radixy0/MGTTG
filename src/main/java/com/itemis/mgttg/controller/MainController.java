@@ -33,14 +33,16 @@ public class MainController {
      */
     public int convertAlienWordsToInt(String[] words){
         //get corresponding romans
-        String romans = "";
+        char[] romansArray = new char[words.length];
         for(int i=0; i<words.length; i++){
-            if(getWordsRomanValue(words[i]) != null){
-                romans += getWordsRomanValue(words[i]);
+            Character romanValue = getWordsRomanValue(words[i]);
+            if(romanValue != null){
+                romansArray[i] = romanValue;
             } else {
                 return -1;
             }
         }
+        String romans = new String(romansArray);
         if(RomanNumeralValidator.containsIllegalCombinations(romans)){
             return -2;
         }

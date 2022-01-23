@@ -69,4 +69,16 @@ class MaterialsTest {
         }
         assertEquals(15f, mats.getPrice("Iron"));
     }
+
+    @Test
+    void clearMaterials_shouldBeEmptyAfter() {
+        Materials mats = new Materials();
+        try{
+            mats.addMaterial("Iron", 5f);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        mats.clearMaterials();
+        assertEquals(true, mats.materials.isEmpty());
+    }
 }

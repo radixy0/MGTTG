@@ -47,4 +47,11 @@ public class Words {
     public Character getValue(String word){
         return words.get(word);
     }
+
+    /**
+     * Clears list of known words
+     */
+    public void clearWords(){
+        words.clear();
+    }
 }

@@ -50,4 +50,11 @@ public class Materials {
     public Float getPrice(String material){
         return materials.get(material);
     }
+
+    /**
+     * Clears list of Materials
+     */
+    public void clearMaterials(){
+        materials.clear();
+    }
 }

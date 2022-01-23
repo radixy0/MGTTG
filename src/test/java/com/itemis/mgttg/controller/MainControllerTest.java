@@ -3,6 +3,7 @@ package com.itemis.mgttg.controller;
 import com.itemis.mgttg.exceptions.MaterialPriceException;
 import com.itemis.mgttg.exceptions.WordAlreadyExistsException;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -12,9 +13,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainControllerTest {
     MainController mainController;
 
-    @BeforeAll
+    @BeforeEach
     void initialize(){
         mainController = MainController.getInstance();
+
+        mainController.words.clearWords();
+        mainController.materials.clearMaterials();
+
         try {
             mainController.words.addWord("TEST1", 'X');
             mainController.words.addWord("TEST2", 'A');
@@ -105,7 +110,7 @@ class MainControllerTest {
         } catch (MaterialPriceException e){
             e.printStackTrace();
         }
-        assertThrows(WordAlreadyExistsException.class, () -> {
+        assertThrows(MaterialPriceException.class, () -> {
            mainController.addMaterial("Gold", 101);
         });
     }
@@ -179,14 +184,19 @@ class MainControllerTest {
 
     @Test
     void updateWord_existingWordShouldBeUpdated() {
-        mainController.updateWord("test1", 'M');
-        assertEquals('M', mainController.getWordsRomanValue("test1"));
+        try{
+            mainController.addWord("test7", 'I');
+        } catch(WordAlreadyExistsException e){
+            e.printStackTrace();
+        }
+        mainController.updateWord("test7", 'M');
+        assertEquals('M', mainController.getWordsRomanValue("test7"));
     }
 
     @Test
     void updateWord_newWordShouldBeCreated(){
-        mainController.updateWord("test7", 'M');
-        assertEquals('M', mainController.getWordsRomanValue("test7"));
+        mainController.updateWord("test8", 'M');
+        assertEquals('M', mainController.getWordsRomanValue("test8"));
     }
 
     @Test
