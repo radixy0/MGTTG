@@ -16,12 +16,12 @@ class MainControllerTest {
     void initialize(){
         mainController = MainController.getInstance();
         try {
-            mainController.words.addWord("test1", 'X');
-            mainController.words.addWord("test2", 'A');
-            mainController.words.addWord("test3", 'I');
+            mainController.words.addWord("TEST1", 'X');
+            mainController.words.addWord("TEST2", 'A');
+            mainController.words.addWord("TEST3", 'I');
 
-            mainController.materials.addMaterial("Iron", 1f);
-            mainController.materials.addMaterial("Bronze", 2f);
+            mainController.materials.addMaterial("IRON", 1f);
+            mainController.materials.addMaterial("BRONZE", 2f);
         } catch(Exception e){
             e.printStackTrace();
         }
