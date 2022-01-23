@@ -44,7 +44,7 @@ public class Words {
      * @param word word to look up
      * @return the words value as float, null if the word is unknown
      */
-    public char getValue(String word){
+    public Character getValue(String word){
         return words.get(word);
     }
 }

@@ -47,7 +47,7 @@ public class Materials {
      * @param material
      * @return Price as float, null if the material is unknown
      */
-    public float getPrice(String material){
+    public Float getPrice(String material){
         return materials.get(material);
     }
 }

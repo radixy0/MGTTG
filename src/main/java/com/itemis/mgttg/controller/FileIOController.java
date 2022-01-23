@@ -1,5 +1,5 @@
 package com.itemis.mgttg.controller;
 
-public class ProcessIOController {
+public class FileIOController {
 
 }

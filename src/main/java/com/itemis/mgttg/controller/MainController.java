@@ -10,10 +10,15 @@ public class MainController {
     Materials materials;
     Words words;
     private static MainController maincontroller_instance = null;
+
+    /**
+     * Creates a new Instance
+     */
     public MainController(){
         materials = new Materials();
         words = new Words();
     }
+
     public static MainController getInstance(){
         if(maincontroller_instance == null){
             maincontroller_instance = new MainController();
@@ -63,11 +68,11 @@ public class MainController {
     }
 
     /**
-     * Gets the Price for a material String as float
+     * Gets the Price for a material String as Float
      * @param material the material to look up
-     * @return material price as float, null if unknown
+     * @return material price as float, -1 if unknown
      */
-    public float getMaterialPrice(String material){
+    public Float getMaterialPrice(String material){
         return materials.getPrice(material.toUpperCase());
     }
 
