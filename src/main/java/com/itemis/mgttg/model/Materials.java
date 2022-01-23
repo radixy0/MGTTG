@@ -13,41 +13,41 @@ public class Materials {
     }
 
     /**
-     * Adds a new Mineral to internal HashMap
-     * @param mineral Mineral to add
-     * @param value Value of the Mineral
-     * @throws MaterialPriceException if the Mineral is already known with a different value
+     * Adds a new Material to internal HashMap
+     * @param material Material to add
+     * @param value Value of the Material
+     * @throws MaterialPriceException if the Material is already known with a different value
      */
-    public void addMaterial(String mineral, Float value) throws MaterialPriceException {
-        if(materials.containsKey(mineral) && !Objects.equals(materials.get(mineral), value)){
-            throw new MaterialPriceException("The Mineral " + mineral + " already seems to have a different Value of "+value+".", mineral, value);
+    public void addMaterial(String material, Float value) throws MaterialPriceException {
+        if(materials.containsKey(material) && !Objects.equals(materials.get(material), value)){
+            throw new MaterialPriceException("The Material " + material + " already seems to have a different Value of "+value+".", material, value);
         }
-        materials.put(mineral, value);
+        materials.put(material, value);
     }
 
     /**
-     * Removes Mineral from the internal HashMap
-     * @param mineral Mineral to remove
+     * Removes Material from the internal HashMap
+     * @param material Material to remove
      */
-    public void removeMaterial(String mineral){
-        materials.remove(mineral);
+    public void removeMaterial(String material){
+        materials.remove(material);
     }
 
     /**
-     * Updates Price of a Mineral
-     * @param mineral Mineral to Update
+     * Updates Price of a Material
+     * @param material Material to Update
      * @param value New Price
      */
-    public void updatePrice(String mineral, float value){
-        materials.put(mineral, value);
+    public void updatePrice(String material, float value){
+        materials.put(material, value);
     }
 
     /**
-     * Gets Price of a Mineral
-     * @param mineral
-     * @return Price as float, null if the mineral is unknown
+     * Gets Price of a Material
+     * @param material
+     * @return Price as float, null if the material is unknown
      */
-    public float getPrice(String mineral){
-        return materials.get(mineral);
+    public float getPrice(String material){
+        return materials.get(material);
     }
 }
