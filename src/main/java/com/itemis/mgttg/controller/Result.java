@@ -23,6 +23,11 @@ public class Result {
         this.answer=0f;
         this.message=message;
     }
+    public Result(ResultCode resultCode, float answer, String message){
+        this.resultCode = resultCode;
+        this.answer=answer;
+        this.message=message;
+    }
 
     public boolean isSuccess(){
         return resultCode == ResultCode.OK;
