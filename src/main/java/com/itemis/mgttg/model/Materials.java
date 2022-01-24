@@ -1,8 +1,11 @@
 package com.itemis.mgttg.model;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
 import com.itemis.mgttg.exceptions.MaterialPriceException;
+import com.itemis.mgttg.tools.Pair;
+
 //TODO comment for doc
 public class Materials {
 
@@ -56,5 +59,17 @@ public class Materials {
      */
     public void clearMaterials(){
         materials.clear();
+    }
+
+    /**
+     * Gets a List of all known Materials and their Price
+     * @return An ArrayList of Pairs of <String, Float>
+     */
+    public ArrayList<Pair<String, Float>> getAllMaterials(){
+        ArrayList<Pair<String, Float>> output = new ArrayList<>();
+        materials.forEach((k,v) -> {
+            output.add(new Pair<String, Float>(k,v));
+        });
+        return output;
     }
 }

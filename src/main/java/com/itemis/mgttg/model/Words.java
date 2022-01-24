@@ -1,6 +1,9 @@
 package com.itemis.mgttg.model;
+import java.util.ArrayList;
 import java.util.HashMap;
 import com.itemis.mgttg.exceptions.WordAlreadyExistsException;
+import com.itemis.mgttg.tools.Pair;
+
 //TODO Comment for doc
 public class Words {
 
@@ -53,5 +56,17 @@ public class Words {
      */
     public void clearWords(){
         words.clear();
+    }
+
+    /**
+     * Gets a List of all known words and their value
+     * @return An ArrayList of Pairs of <String, Character>
+     */
+    public ArrayList<Pair<String, Character>> getAllWords(){
+        ArrayList<Pair<String, Character>> output = new ArrayList<>();
+        words.forEach((k,v) -> {
+            output.add(new Pair<String, Character>(k,v));
+        });
+        return output;
     }
 }
