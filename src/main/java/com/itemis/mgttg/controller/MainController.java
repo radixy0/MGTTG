@@ -2,8 +2,10 @@ package com.itemis.mgttg.controller;
 import com.itemis.mgttg.model.*;
 import com.itemis.mgttg.exceptions.*;
 import com.itemis.mgttg.tools.NumberConverter;
+import com.itemis.mgttg.tools.Pair;
 import com.itemis.mgttg.tools.RomanNumeralValidator;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class MainController {
@@ -67,6 +69,19 @@ public class MainController {
         }
         float romanValue = NumberConverter.romanToInt(romanAmount.toUpperCase());
         return value / romanValue;
+    }
+
+    /**
+     * Calculates the material price from an int amount and the total value, e.g. 6 Iron = 5
+     * @param amount integer amount of sold material units
+     * @param value value of total
+     * @return The price for 1 unit of the material as float, or 0 if amount is 0
+     */
+    public float calculateMaterialPrice(int amount, float value){
+        if(amount == 0){
+            return 0;
+        }
+        return value / amount;
     }
 
     /**
@@ -158,5 +173,21 @@ public class MainController {
      */
     public void removeWord(String word){
         words.removeWord(word.toUpperCase());
+    }
+
+    /**
+     * Gets a List of Pairs of all known Materials and their price
+     * @return ArrayList of Pair<String, Float> Objects representing materials
+     */
+    public ArrayList<Pair<String, Float>> getAllMaterials(){
+        return materials.getAllMaterials();
+    }
+
+    /**
+     * Gets a List of Pairs of all known words and their value
+     * @return ArrayList of Pair<String, Character> Objects representing words
+     */
+    public ArrayList<Pair<String, Character>> getAllWords(){
+        return words.getAllWords();
     }
 }

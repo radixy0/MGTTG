@@ -73,6 +73,16 @@ class MainControllerTest {
     }
 
     @Test
+    void calculateMaterialPriceInt_zeroAmountShouldReturnZero() {
+        assertEquals(0, mainController.calculateMaterialPrice(0, 1231f));
+    }
+
+    @Test
+    void calculateMaterialPriceInt_validNumbers() {
+        assertEquals(15f, mainController.calculateMaterialPrice(4, 60f));
+    }
+
+    @Test
     void getMaterialPrice_existingMaterialShouldReturnPrice() {
         assertEquals(2f, mainController.getMaterialPrice("bronze"));
     }
@@ -220,4 +230,5 @@ class MainControllerTest {
     void removeWord_unknownWordShouldNotThrowException(){
         mainController.removeWord("unknownWord123");
     }
+
 }
