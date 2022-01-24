@@ -21,12 +21,12 @@ class MainControllerTest {
         mainController.materials.clearMaterials();
 
         try {
-            mainController.words.addWord("TEST1", 'X');
-            mainController.words.addWord("TEST2", 'A');
-            mainController.words.addWord("TEST3", 'I');
+            mainController.words.addWord("test1", 'X');
+            mainController.words.addWord("test2", 'A');
+            mainController.words.addWord("test3", 'I');
 
-            mainController.materials.addMaterial("IRON", 1f);
-            mainController.materials.addMaterial("BRONZE", 2f);
+            mainController.materials.addMaterial("iron", 1f);
+            mainController.materials.addMaterial("bronze", 2f);
         } catch(Exception e){
             e.printStackTrace();
         }
@@ -231,4 +231,14 @@ class MainControllerTest {
         mainController.removeWord("unknownWord123");
     }
 
+    @Test
+    void getUnknownWordsFromList_EmptyList() {
+        String[] arr = {};
+        assertEquals("", mainController.getUnknownWordsFromList(arr));
+    }
+    @Test
+    void getUnknownWordsFromList_NonEmptyList() {
+        String[] arr = {"test1", "test5", "test6"};
+        assertEquals("test5, test6", mainController.getUnknownWordsFromList(arr));
+    }
 }
