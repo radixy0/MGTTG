@@ -41,7 +41,7 @@ public class LineProcessController {
         Matcher matcher;
 
         //'WORD is CHAR'
-        regex = "("+REGEX_WORD+") +is +(\\W)";
+        regex = "("+REGEX_WORD+") +is +(\\w)";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(input);
 
@@ -50,19 +50,24 @@ public class LineProcessController {
         }
 
         //'WORD+ WORD is INT Credits'
-        regex = "(" + REGEX_WORD + ")+ +(" + REGEX_WORD + ") is +(" + REGEX_NUMBER + ") +credits";
+        regex = "((" + REGEX_WORD + ")+) +(" + REGEX_WORD + ") is +(" + REGEX_NUMBER + ") +credits";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(input);
 
         if(matcher.matches()){
+            String one = matcher.group(1);
+            String two = matcher.group(2);
+            String three = matcher.group(3);
+            int count = matcher.groupCount();
+            String test="";
             return processValueAssignmentLine(
                     matcher.group(1).split(" "),
-                    matcher.group(2),
-                    Float.parseFloat(matcher.group(3)));
+                    matcher.group(matcher.groupCount()-1),
+                    Float.parseFloat(matcher.group(matcher.groupCount())));
         }
 
         //'how much is WORD+'
-        regex = "how much is *("+REGEX_WORD+" )+ +\\??";
+        regex = "how much is +(("+REGEX_WORD+"( |$))+) *\\??";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(input);
 
@@ -71,12 +76,12 @@ public class LineProcessController {
         }
 
         //'how many Credits is WORD+ WORD'
-        regex = "how many credits is *("+REGEX_WORD+" )+ +("+REGEX_WORD+")";
+        regex = "how many credits is *(("+REGEX_WORD+" )+)("+REGEX_WORD+")";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(input);
 
         if(matcher.matches()){
-            return processPriceRequest(matcher.group(1).split(" "), matcher.group(2));
+            return processPriceRequest(matcher.group(1).split(" "), matcher.group(matcher.groupCount()));
         }
 
 
@@ -111,8 +116,7 @@ public class LineProcessController {
         //get alien word value
         int valueOfAlienWords = MainController.getInstance().convertAlienWordsToInt(words);
         if(valueOfAlienWords == -1){
-            //TODO maybe return which word in Result message string
-            return new Result(ResultCode.ALIEN_WORD_UNKNOWN);
+            return new Result(ResultCode.ALIEN_WORD_UNKNOWN, MainController.getInstance().getUnknownWordsFromList(words));
         }
         if(valueOfAlienWords == -2){
             return new Result(ResultCode.ROMAN_NUMERAL_INVALID);
@@ -122,7 +126,8 @@ public class LineProcessController {
         try {
             MainController.getInstance().addMaterial(material, materialPrice);
         } catch(MaterialPriceException e){
-            return new Result(ResultCode.MATERIAL_ALREADY_KNOWN, materialPrice, material);
+            float oldValue = MainController.getInstance().getMaterialPrice(material);
+            return new Result(ResultCode.MATERIAL_ALREADY_KNOWN, oldValue, material);
         }
         return new Result(ResultCode.OK);
     }
@@ -135,14 +140,14 @@ public class LineProcessController {
     private Result processTranslationRequest(String[] words){
         int valueOfAlienWords = MainController.getInstance().convertAlienWordsToInt(words);
         if(valueOfAlienWords == -1){
-            //TODO maybe return which word in Result message string
-            return new Result(ResultCode.ALIEN_WORD_UNKNOWN);
+            return new Result(ResultCode.ALIEN_WORD_UNKNOWN, MainController.getInstance().getUnknownWordsFromList(words));
         }
         if(valueOfAlienWords == -2){
             return new Result(ResultCode.ROMAN_NUMERAL_INVALID);
         }
 
-        return new Result(ResultCode.OK, valueOfAlienWords);
+
+        return new Result(ResultCode.TRANSLATION_ANSWER, valueOfAlienWords);
     }
 
     /**
@@ -153,18 +158,20 @@ public class LineProcessController {
      */
     private Result processPriceRequest(String[] words, String material){
         int valueOfAlienWords = MainController.getInstance().convertAlienWordsToInt(words);
-        float priceOfMaterial = MainController.getInstance().getMaterialPrice(material);
+        Float priceOfMaterial = MainController.getInstance().getMaterialPrice(material);
 
         if(valueOfAlienWords == -1){
-            //TODO maybe return which word in Result message string
-            return new Result(ResultCode.ALIEN_WORD_UNKNOWN);
+            return new Result(ResultCode.ALIEN_WORD_UNKNOWN, MainController.getInstance().getUnknownWordsFromList(words));
         }
         if(valueOfAlienWords == -2){
             return new Result(ResultCode.ROMAN_NUMERAL_INVALID);
         }
+        if(priceOfMaterial == null){
+            return new Result(ResultCode.MATERIAL_UNKNOWN);
+        }
 
         float answer = priceOfMaterial * (float) valueOfAlienWords;
-        return new Result(ResultCode.OK, answer);
+        return new Result(ResultCode.PRICE_ANSWER, answer);
     }
 
     /**

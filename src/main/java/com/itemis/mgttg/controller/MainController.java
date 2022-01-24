@@ -90,7 +90,7 @@ public class MainController {
      * @return material price as float, -1 if unknown
      */
     public Float getMaterialPrice(String material){
-        return materials.getPrice(material.toUpperCase());
+        return materials.getPrice(material.toLowerCase());
     }
 
     /**
@@ -99,7 +99,7 @@ public class MainController {
      * @return Roman value as Character, null if unknown
      */
     public Character getWordsRomanValue(String word){
-        return words.getValue(word.toUpperCase());
+        return words.getValue(word.toLowerCase());
     }
 
     /**
@@ -109,7 +109,7 @@ public class MainController {
      * @throws MaterialPriceException if the Material is already known with a different price
      */
     public void addMaterial(String material, float value) throws MaterialPriceException {
-        materials.addMaterial(material.toUpperCase(), value);
+        materials.addMaterial(material.toLowerCase(), value);
     }
 
     /**
@@ -129,7 +129,7 @@ public class MainController {
      * @throws WordAlreadyExistsException if the word already exists for a different roman Letter
      */
     public void addWord(String word, char romanValue) throws WordAlreadyExistsException{
-        words.addWord(word.toUpperCase(), Character.toUpperCase(romanValue));
+        words.addWord(word.toLowerCase(), Character.toUpperCase(romanValue));
     }
 
     /**
@@ -138,7 +138,7 @@ public class MainController {
      * @param value  Value
      */
     public void updateMaterial(String material, float value){
-        materials.updatePrice(material.toUpperCase(), value);
+        materials.updatePrice(material.toLowerCase(), value);
     }
 
     /**
@@ -156,7 +156,7 @@ public class MainController {
      * @param romanValue value
      */
     public void updateWord(String word, char romanValue){
-        words.updateWord(word.toUpperCase(), Character.toUpperCase(romanValue));
+        words.updateWord(word.toLowerCase(), Character.toUpperCase(romanValue));
     }
 
     /**
@@ -164,7 +164,7 @@ public class MainController {
      * @param material Material to remove
      */
     public void removeMaterial(String material){
-        materials.removeMaterial(material.toUpperCase());
+        materials.removeMaterial(material.toLowerCase());
     }
 
     /**
@@ -172,7 +172,7 @@ public class MainController {
      * @param word Word to remove
      */
     public void removeWord(String word){
-        words.removeWord(word.toUpperCase());
+        words.removeWord(word.toLowerCase());
     }
 
     /**
@@ -189,5 +189,24 @@ public class MainController {
      */
     public ArrayList<Pair<String, Character>> getAllWords(){
         return words.getAllWords();
+    }
+
+    public String getUnknownWordsFromList(String[] words){
+        ArrayList<Pair<String, Character>> knownWords = getAllWords();
+        String unknownWords = "";
+        for(String word : words){
+            boolean found=false;
+            for(Pair<String, Character> knownWord : knownWords){
+                if(knownWord.getLeft().equals(word)){
+                    found=true;
+                }
+            }
+            if(!found){
+                unknownWords+=word+" ";
+            }
+        }
+        //formatting
+        unknownWords=unknownWords.trim().replaceAll(" ", ", ");
+        return unknownWords;
     }
 }
