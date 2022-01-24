@@ -13,5 +13,7 @@ public enum ResultCode {
     DIDNT_UNDERSTAND_LINE,
     ROMAN_NUMERAL_INVALID,
     HELP,
+    FROM_FILE,
+    EASTEREGG,
     EXIT;
 }

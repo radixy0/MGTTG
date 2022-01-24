@@ -27,7 +27,6 @@ public class RomanNumeralValidator {
      * @return true, if the numeral contains any illegal pattern
      */
     public static boolean containsIllegalCombinations(String roman){
-        //TODO implement
         //check for repeated D, L or V
         if(roman.contains("DD") || roman.contains("LL") || roman.contains("VV")){
             return true;
@@ -41,7 +40,7 @@ public class RomanNumeralValidator {
             return true;
         }
         //check if X is ever substracted by other than L or C
-        if(roman.contains("XD") || roman.contains("XL")){
+        if(roman.contains("XD") || roman.contains("XM")){
             return true;
         }
         //check if V, L, D are ever substracted

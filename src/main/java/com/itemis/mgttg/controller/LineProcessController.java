@@ -41,6 +41,16 @@ public class LineProcessController {
             return new Result(ResultCode.EXIT);
         }
 
+        //File IO
+        if(input.matches("file "+REGEX_WORD)){
+            //TODO FileIO
+        }
+
+        //Easter egg
+        if(input.matches("the answer to life, the universe, and everything")){
+            return new Result(ResultCode.EASTEREGG, "42");
+        }
+
         String regex;
         Pattern pattern;
         Matcher matcher;
@@ -55,7 +65,7 @@ public class LineProcessController {
         }
 
         //'WORD+ WORD is INT Credits'
-        regex = "((" + REGEX_WORD + ")+) +(" + REGEX_WORD + ") is +(" + REGEX_NUMBER + ") +credits";
+        regex = "((" + REGEX_WORD + " )+)(" + REGEX_WORD + ") is +(" + REGEX_NUMBER + ") +credits";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(input);
 
@@ -81,12 +91,12 @@ public class LineProcessController {
         }
 
         //'how many Credits is WORD+ WORD'
-        regex = "how many credits is *(("+REGEX_WORD+" )+)("+REGEX_WORD+")";
+        regex = "how many credits is +(("+REGEX_WORD+" )+)("+REGEX_WORD+")($| *\\?)";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(input);
 
         if(matcher.matches()){
-            return processPriceRequest(matcher.group(1).split(" "), matcher.group(matcher.groupCount()));
+            return processPriceRequest(matcher.group(1).split(" "), matcher.group(matcher.groupCount()-1));
         }
 
 
@@ -102,6 +112,7 @@ public class LineProcessController {
      * @return Result Object
      */
     private Result processRomanAssignmentLine(String word, Character romanSymbol){
+        romanSymbol = Character.toUpperCase(romanSymbol);
         try{
             MainController.getInstance().addWord(word, romanSymbol);
         } catch(WordAlreadyExistsException e) {
@@ -151,8 +162,13 @@ public class LineProcessController {
             return new Result(ResultCode.ROMAN_NUMERAL_INVALID);
         }
 
+        String input_formatted = "";
+        for(String word : words){
+            input_formatted += word + " ";
+        }
+        input_formatted = input_formatted.trim();
 
-        return new Result(ResultCode.TRANSLATION_ANSWER, valueOfAlienWords);
+        return new Result(ResultCode.TRANSLATION_ANSWER, valueOfAlienWords, input_formatted);
     }
 
     /**
@@ -176,7 +192,13 @@ public class LineProcessController {
         }
 
         float answer = priceOfMaterial * (float) valueOfAlienWords;
-        return new Result(ResultCode.PRICE_ANSWER, answer);
+        String input_formatted = "";
+        for(String word : words){
+            input_formatted += word + " ";
+        }
+        input_formatted += material.substring(0, 1).toUpperCase() + material.substring(1);;
+        input_formatted = input_formatted.trim();
+        return new Result(ResultCode.PRICE_ANSWER, answer, input_formatted);
     }
 
     /**

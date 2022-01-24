@@ -58,7 +58,7 @@ class LineProcessControllerTest {
         } catch(WordAlreadyExistsException e){
             e.printStackTrace();
         }
-        assertEquals(new Result(ResultCode.TRANSLATION_ANSWER, 1005),
+        assertEquals(new Result(ResultCode.TRANSLATION_ANSWER, 1005, "test2 test1"),
                 lineProcessController.processLine("how much is test2 test1"));
     }
     @Test
@@ -88,7 +88,7 @@ class LineProcessControllerTest {
         } catch(MaterialPriceException | WordAlreadyExistsException e){
             e.printStackTrace();
         }
-        assertEquals(new Result(ResultCode.PRICE_ANSWER, 1005f),
+        assertEquals(new Result(ResultCode.PRICE_ANSWER, 1005f, "test2 test1 Iron"),
                 lineProcessController.processLine("how many credits is test2 test1 iron"));
     }
 
@@ -268,5 +268,5 @@ class LineProcessControllerTest {
         assertEquals(new Result(ResultCode.EXIT),
                 lineProcessController.processLine("exit"));
     }
-
+    
 }
