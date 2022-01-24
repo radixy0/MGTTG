@@ -263,4 +263,10 @@ class LineProcessControllerTest {
                 lineProcessController.processLine("help   "));
     }
 
+    @Test
+    void processLine_Exit(){
+        assertEquals(new Result(ResultCode.EXIT),
+                lineProcessController.processLine("exit"));
+    }
+
 }

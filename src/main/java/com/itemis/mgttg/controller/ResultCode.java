@@ -12,5 +12,6 @@ public enum ResultCode {
     MATERIAL_UNKNOWN,
     DIDNT_UNDERSTAND_LINE,
     ROMAN_NUMERAL_INVALID,
-    HELP;
+    HELP,
+    EXIT;
 }

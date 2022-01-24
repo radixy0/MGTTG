@@ -29,8 +29,8 @@ public class Result {
         this.message=message;
     }
 
-    public boolean isSuccess(){
-        return resultCode == ResultCode.OK;
+    public ResultCode getResultCode(){
+        return resultCode;
     }
     public float getAnswer(){
         return answer;

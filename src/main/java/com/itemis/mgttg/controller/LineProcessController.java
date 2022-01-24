@@ -22,6 +22,7 @@ public class LineProcessController {
         //Decide what type of line it is, call the corresponding function and return its Result
         input=input.toLowerCase().trim();
         //patterns:
+
         //'list materials'
         if(input.matches("list materials")){
             return processListMaterials();
@@ -31,11 +32,15 @@ public class LineProcessController {
         if(input.matches("list words")){
             return processListWords();
         }
-
         //'help'
         if(input.matches("help")){
             return new Result(ResultCode.HELP);
         }
+        //'exit'
+        if(input.matches("exit")){
+            return new Result(ResultCode.EXIT);
+        }
+
         String regex;
         Pattern pattern;
         Matcher matcher;
