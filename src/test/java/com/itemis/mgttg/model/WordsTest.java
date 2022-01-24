@@ -1,7 +1,10 @@
 package com.itemis.mgttg.model;
 
 import com.itemis.mgttg.exceptions.WordAlreadyExistsException;
+import com.itemis.mgttg.tools.Pair;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -76,5 +79,28 @@ class WordsTest {
         }
         words.clearWords();
         assertTrue(words.words.isEmpty());
+    }
+
+    @Test
+    void getAllWords_AllPairsShouldBeEqual() {
+        Words words = new Words();
+        Pair<String, Character> p1 = new Pair("test1", 'I');
+        Pair<String, Character> p2 = new Pair("test2", 'V');
+        Pair<String, Character> p3 = new Pair("test3", 'X');
+        try{
+            words.addWord(p1.getLeft(), p1.getRight());
+            words.addWord(p2.getLeft(), p2.getRight());
+            words.addWord(p3.getLeft(), p3.getRight());
+        } catch (WordAlreadyExistsException e){
+            e.printStackTrace();
+        }
+        ArrayList<Pair<String, Character>> toTest = words.getAllWords();
+        for(Pair<String, Character> p : toTest){
+            boolean equalsToSomething = false;
+            if(p.equals(p1)){equalsToSomething=true;}
+            if(p.equals(p2)){equalsToSomething=true;}
+            if(p.equals(p3)){equalsToSomething=true;}
+            assertTrue(equalsToSomething);
+        }
     }
 }

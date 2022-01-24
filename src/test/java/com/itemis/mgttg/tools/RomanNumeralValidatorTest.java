@@ -33,27 +33,27 @@ class RomanNumeralValidatorTest {
     void containsIllegalCombinations_RepeatedVShouldBeTrue() {
         assertTrue(RomanNumeralValidator.containsIllegalCombinations("VV"));
     }
-    //D L and V cannot be substracted
+    //D L and V cannot be Subtracted
     @Test
-    void containsIllegalCombinations_SubstractedDShouldBeTrue() {
+    void containsIllegalCombinations_SubtractedDShouldBeTrue() {
         assertTrue(RomanNumeralValidator.containsIllegalCombinations("DM"));
     }
     @Test
-    void containsIllegalCombinations_SubstractedLShouldBeTrue() {
+    void containsIllegalCombinations_SubtractedLShouldBeTrue() {
         assertTrue(RomanNumeralValidator.containsIllegalCombinations("LM"));
     }
     @Test
-    void containsIllegalCombinations_SubstractedVShouldBeTrue() {
+    void containsIllegalCombinations_SubtractedVShouldBeTrue() {
         assertTrue(RomanNumeralValidator.containsIllegalCombinations("VM"));
     }
     //I only subtracted from V and X
     @Test
-    void containsIllegalCombinations_InvalidISubstractionShouldBeTrue() {
+    void containsIllegalCombinations_InvalidISubtractionShouldBeTrue() {
         assertTrue(RomanNumeralValidator.containsIllegalCombinations("IC"));
     }
     //X only subtracted from L and C
     @Test
-    void containsIllegalCombinations_InvalidXSubstractionShouldBeTrue() {
+    void containsIllegalCombinations_InvalidXSubtractionShouldBeTrue() {
         assertTrue(RomanNumeralValidator.containsIllegalCombinations("XD"));
     }
     //only one small symbol from a large symbol

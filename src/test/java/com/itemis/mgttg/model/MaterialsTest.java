@@ -1,7 +1,11 @@
 package com.itemis.mgttg.model;
 
 import com.itemis.mgttg.exceptions.MaterialPriceException;
+import com.itemis.mgttg.exceptions.WordAlreadyExistsException;
+import com.itemis.mgttg.tools.Pair;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -80,5 +84,28 @@ class MaterialsTest {
         }
         mats.clearMaterials();
         assertEquals(true, mats.materials.isEmpty());
+    }
+
+    @Test
+    void getAllMaterials_AllPairsShouldBeEqual() {
+        Materials mats = new Materials();
+        Pair<String, Float> p1 = new Pair("test1", 1f);
+        Pair<String, Float> p2 = new Pair("test2", 2f);
+        Pair<String, Float> p3 = new Pair("test3", 3f);
+        try{
+            mats.addMaterial(p1.getLeft(), p1.getRight());
+            mats.addMaterial(p2.getLeft(), p2.getRight());
+            mats.addMaterial(p3.getLeft(), p3.getRight());
+        } catch (MaterialPriceException e){
+            e.printStackTrace();
+        }
+        ArrayList<Pair<String, Float>> toTest = mats.getAllMaterials();
+        for(Pair<String, Float> p : toTest){
+            boolean equalsToSomething = false;
+            if(p.equals(p1)){equalsToSomething=true;}
+            if(p.equals(p2)){equalsToSomething=true;}
+            if(p.equals(p3)){equalsToSomething=true;}
+            assertTrue(equalsToSomething);
+        }
     }
 }
