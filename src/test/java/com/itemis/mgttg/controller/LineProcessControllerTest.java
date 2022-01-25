@@ -268,5 +268,5 @@ class LineProcessControllerTest {
         assertEquals(new Result(ResultCode.EXIT),
                 lineProcessController.processLine("exit"));
     }
-    
+
 }

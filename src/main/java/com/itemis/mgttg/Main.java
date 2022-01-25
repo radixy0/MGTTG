@@ -1,6 +1,5 @@
 package com.itemis.mgttg;
 
-import com.itemis.mgttg.tools.NumberConverter;
 import com.itemis.mgttg.view.ConsoleView;
 
 public class Main {

@@ -41,11 +41,6 @@ public class LineProcessController {
             return new Result(ResultCode.EXIT);
         }
 
-        //File IO
-        if(input.matches("file "+REGEX_WORD)){
-            //TODO FileIO
-        }
-
         //Easter egg
         if(input.matches("the answer to life, the universe, and everything")){
             return new Result(ResultCode.EASTEREGG, "42");
@@ -54,6 +49,15 @@ public class LineProcessController {
         String regex;
         Pattern pattern;
         Matcher matcher;
+
+        regex="file (.+)";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(input);
+
+        //File IO
+        if(matcher.matches()){
+            return new Result(ResultCode.FROM_FILE, matcher.group(1));
+        }
 
         //'WORD is CHAR'
         regex = "("+REGEX_WORD+") +is +(\\w)";
