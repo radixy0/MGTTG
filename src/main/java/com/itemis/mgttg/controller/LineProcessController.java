@@ -209,7 +209,7 @@ public class LineProcessController {
             return new Result(ResultCode.ROMAN_NUMERAL_INVALID);
         }
         if(priceOfMaterial == null){
-            return new Result(ResultCode.MATERIAL_UNKNOWN);
+            return new Result(ResultCode.MATERIAL_UNKNOWN, material);
         }
 
         float answer = priceOfMaterial * (float) valueOfAlienWords;

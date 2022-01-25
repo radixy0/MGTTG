@@ -111,12 +111,12 @@ class LineProcessControllerTest {
         } catch(WordAlreadyExistsException e){
             e.printStackTrace();
         }
-        assertEquals(new Result(ResultCode.MATERIAL_UNKNOWN),
+        assertEquals(new Result(ResultCode.MATERIAL_UNKNOWN, "copper"),
                 lineProcessController.processLine("how many credits is test2 test1 copper"));
     }
 
     @Test
-    void processLine_PriceReqeustForInvalidRomanAmount(){
+    void processLine_PriceRequestForInvalidRomanAmount(){
         try {
             mainController.addWord("test1", 'V');
             mainController.addWord("test2", 'M');
