@@ -37,4 +37,14 @@ class NumberConverterTest {
     void nineteenNinetyFourToRomanShouldEqualMCMXCIV() {
         assertEquals("MCMXCIV", NumberConverter.intToRoman(1994));
     }
+
+    @Test
+    void romanChartoIntDigit_unknownCharShouldReturnNull() {
+        assertNull(NumberConverter.romanChartoIntDigit('A'));
+    }
+
+    @Test
+    void romanCharToIntDigit_knownCharShouldReturnDigit(){
+        assertEquals(5, NumberConverter.romanChartoIntDigit('V'));
+    }
 }
