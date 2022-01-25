@@ -92,7 +92,7 @@ public class ConsoleView {
                 out.println("Here are all the Words I know yet:\n" + result.getMessage());
                 break;
             case WORD_ALREADY_KNOWN:
-                out.println("I already know the Word " + result.getMessage() + "with a different Value");
+                out.println("I already know the Word " + result.getMessage() + " with a different Value");
                 out.println("You can remove the Word by using removeword WORD");
                 break;
             case MATERIAL_ALREADY_KNOWN:
