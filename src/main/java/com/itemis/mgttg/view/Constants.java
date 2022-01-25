@@ -9,6 +9,8 @@ public class Constants {
     static final String HELP = "Available Commands: \n" +
             "list words\n\tLists all the words I've learned so far\n" +
             "list materials\n\tLists all the materials I know so far\n" +
+            "deleteword WORD\n\tDeletes a word\n" +
+            "deletematerial MATERIAL\n\tDeletes a material\n" +
             "file FILE\n\tReads from a File in this directory\n" +
             "WORD is <CHARACTER>\n\tAssigns a new word to a Character\n" +
             "WORD WORD ... WORD MATERIAL is NUMBER Credits\n\tLearns the Price of a new Material from a Trade\n" +
