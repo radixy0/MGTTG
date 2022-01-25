@@ -26,6 +26,7 @@ public class ConsoleView {
         finished=false;
         while(!finished){
             String in = console.readLine("> ");
+            if(in.isBlank()){continue;}
             Result result = lineProcessController.processLine(in);
             handleResult(result);
         }
@@ -42,6 +43,7 @@ public class ConsoleView {
                     System.out.println("The specified file does not seem to exist"); break;
                 }
                 for(String line : lines){
+                    if(line.isBlank()){continue;}
                     handleResult(lineProcessController.processLine(line));
                 }
                 break;

@@ -12,12 +12,10 @@ import java.util.stream.Stream;
 public class FileIOController {
 
     public static String[] getLines(String filename) {
-        List<String> allLines = new ArrayList<String>();
-        System.out.println("filename " + filename);
+        List<String> allLines;
         try {
             allLines = Files.readAllLines(Paths.get(filename));
         } catch (IOException e) {
-            e.printStackTrace();
             return null;
         }
         return allLines.toArray(new String[0]);

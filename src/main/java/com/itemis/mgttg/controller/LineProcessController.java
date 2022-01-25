@@ -22,7 +22,6 @@ public class LineProcessController {
         //Decide what type of line it is, call the corresponding function and return its Result
         input=input.toLowerCase().trim();
         //patterns:
-
         //'list materials'
         if(input.matches("list materials")){
             return processListMaterials();
