@@ -91,11 +91,6 @@ public class LineProcessController {
         matcher = pattern.matcher(input);
 
         if(matcher.matches()){
-            String one = matcher.group(1);
-            String two = matcher.group(2);
-            String three = matcher.group(3);
-            int count = matcher.groupCount();
-            String test="";
             return processValueAssignmentLine(
                     matcher.group(1).split(" "),
                     matcher.group(matcher.groupCount()-1),

@@ -14,7 +14,7 @@ public class ConsoleView {
 
     /**
      * Creates a new ConsoleView with given output stream
-     * @param out
+     * @param out The output stream to use
      */
     public ConsoleView(PrintStream out){
         this.out=out;
