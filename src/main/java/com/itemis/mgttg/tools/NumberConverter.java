@@ -72,7 +72,7 @@ public class NumberConverter {
      * @return int value for single roman char, null if it doesnt exist
      */
     //TODO test?
-    protected static int romanChartoIntDigit(char roman){
+    protected static Integer romanChartoIntDigit(char roman){
         return romanToIntMap.get(roman);
     }
 }
