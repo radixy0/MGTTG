@@ -93,12 +93,14 @@ public class ConsoleView {
                 break;
             case WORD_ALREADY_KNOWN:
                 out.println("I already know the Word " + result.getMessage() + "with a different Value");
+                out.println("You can remove the Word by using removeword WORD");
                 break;
             case MATERIAL_ALREADY_KNOWN:
                 out.println("I already know the Material "
                         + result.getMessage()
                         + " at a different Price of "
                         + cleanFloatIfNoDecimal(result.getAnswer()));
+                out.println("You can remove the Material by using removematerial MATERIAL");
                 break;
             case ALIEN_WORD_UNKNOWN:
                 out.println("Unknown Word: " + result.getMessage());

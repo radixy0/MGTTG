@@ -49,13 +49,31 @@ public class LineProcessController {
         Pattern pattern;
         Matcher matcher;
 
-        regex="file (.+)";
+        regex="file +(.+)";
         pattern = Pattern.compile(regex);
         matcher = pattern.matcher(input);
 
         //File IO
         if(matcher.matches()){
             return new Result(ResultCode.FROM_FILE, matcher.group(1));
+        }
+
+        //removeword WORD
+        regex="removeword +(\\w+)($|\\W.*)";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(input);
+
+        if(matcher.matches()){
+            return processRemoveWord(matcher.group(1));
+        }
+
+        //removematerial WORD
+        regex="removematerial +(\\w+)($|\\W.*)";
+        pattern = Pattern.compile(regex);
+        matcher = pattern.matcher(input);
+
+        if(matcher.matches()){
+            return processRemoveMaterial(matcher.group(1));
         }
 
         //'WORD is CHAR'
@@ -234,5 +252,23 @@ public class LineProcessController {
             }
         }
         return new Result(ResultCode.LIST_WORDS, answer);
+    }
+
+    /**
+     * Removes an already known word, does nothing if the word isn't known yet
+     * @param word The word to remove
+     * @return Result with code OK
+     */
+    private Result processRemoveWord(String word){
+        return new Result(ResultCode.OK);
+    }
+
+    /**
+     * Removes an already known Material, does nothing if the material isn't known yet
+     * @param materialName The material to remove
+     * @return Result with code OK if the material was removed
+     */
+    private Result processRemoveMaterial(String materialName){
+        return new Result(ResultCode.OK);
     }
 }

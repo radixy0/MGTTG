@@ -269,4 +269,26 @@ class LineProcessControllerTest {
                 lineProcessController.processLine("exit"));
     }
 
+    @Test
+    void processLine_RemoveWord(){
+        try {
+            mainController.addWord("test1", 'V');
+        } catch(WordAlreadyExistsException e){
+            e.printStackTrace();
+        }
+        assertEquals(new Result(ResultCode.OK), lineProcessController.processLine("removeword test1"));
+        assertTrue(mainController.words.getAllWords().isEmpty());
+    }
+
+    @Test
+    void processLine_RemoveMaterial(){
+        try {
+            mainController.addMaterial("iron", 1f);
+        } catch(MaterialPriceException e){
+            e.printStackTrace();
+        }
+        assertEquals(new Result(ResultCode.OK), lineProcessController.processLine("removematerial iron"));
+        assertTrue(mainController.materials.getAllMaterials().isEmpty());
+    }
+
 }
