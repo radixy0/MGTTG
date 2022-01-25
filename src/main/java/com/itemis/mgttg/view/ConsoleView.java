@@ -12,14 +12,26 @@ public class ConsoleView {
     LineProcessController lineProcessController;
     boolean finished;
 
+    /**
+     * Creates a new ConsoleView with given output stream
+     * @param out
+     */
     public ConsoleView(PrintStream out){
         this.out=out;
         lineProcessController=new LineProcessController();
     }
+
+    /**
+     * Creates a new ConsoleView using System.out as output stream
+     */
     public ConsoleView(){
         this.out=System.out;
         lineProcessController = new LineProcessController();
     }
+
+    /**
+     * Runs the ConsoleView, accepting user input line by line
+     */
     public void run(){
         Console console = System.console();
         play_intro();
@@ -33,6 +45,10 @@ public class ConsoleView {
         play_outro();
     }
 
+    /**
+     * Reads and processes a file containing input lines, then stops
+     * @param filename the file to read
+     */
     public void run_fromFile(String filename){
         String[] lines = FileIOController.getLines(filename);
         if(lines == null){
@@ -45,6 +61,10 @@ public class ConsoleView {
         }
     }
 
+    /**
+     * Handles the Result that comes back from a Controller, and outputs Results to output stream
+     * @param result the Result object to handle
+     */
     private void handleResult(Result result){
         switch(result.getResultCode()){
             case OK:
@@ -104,13 +124,26 @@ public class ConsoleView {
         }
     }
 
+    /**
+     * Outputs Itemis logo and a Greeting message to output stream
+     */
     private void play_intro(){
         out.println(Constants.LOGO);
         out.println(Constants.INTRO);
     }
+
+    /**
+     * Outputs a goodbye-message to output stream
+     */
     private void play_outro(){
         out.println(Constants.OUTRO);
     }
+
+    /**
+     * Makes Floats that have no decimals appear without .0 at the end
+     * @param num the float to check
+     * @return X if the float is of shape X.0, otherwise the whole float
+     */
     private String cleanFloatIfNoDecimal(float num){
         String output = ""+num;
         if((int) num == num){

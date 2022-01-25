@@ -3,8 +3,6 @@ import java.util.HashMap;
 
 public class NumberConverter {
 
-    //TODO: find prettier way of converting roman to int
-
     static HashMap<Character, Integer> romanToIntMap = new HashMap<>();
     static{
         romanToIntMap.put('I',1);
@@ -71,7 +69,6 @@ public class NumberConverter {
      * @param roman
      * @return int value for single roman char, null if it doesnt exist
      */
-    //TODO test?
     protected static Integer romanChartoIntDigit(char roman){
         return romanToIntMap.get(roman);
     }

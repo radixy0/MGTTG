@@ -11,6 +11,11 @@ import java.util.stream.Stream;
 
 public class FileIOController {
 
+    /**
+     * Gets content from a File as Array of lines
+     * @param filename the file to read
+     * @return String array of lines, null if the file doesn't exist
+     */
     public static String[] getLines(String filename) {
         List<String> allLines;
         try {

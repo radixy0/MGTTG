@@ -3,8 +3,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import com.itemis.mgttg.exceptions.WordAlreadyExistsException;
 import com.itemis.mgttg.tools.Pair;
-
-//TODO Comment for doc
 public class Words {
 
     HashMap<String, Character> words;
