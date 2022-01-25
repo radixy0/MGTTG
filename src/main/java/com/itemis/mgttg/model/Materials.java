@@ -6,7 +6,6 @@ import java.util.Objects;
 import com.itemis.mgttg.exceptions.MaterialPriceException;
 import com.itemis.mgttg.tools.Pair;
 
-//TODO comment for doc
 public class Materials {
 
     HashMap<String, Float> materials;
