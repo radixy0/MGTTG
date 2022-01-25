@@ -260,15 +260,17 @@ public class LineProcessController {
      * @return Result with code OK
      */
     private Result processRemoveWord(String word){
+        MainController.getInstance().removeWord(word);
         return new Result(ResultCode.OK);
     }
 
     /**
      * Removes an already known Material, does nothing if the material isn't known yet
-     * @param materialName The material to remove
+     * @param material The material to remove
      * @return Result with code OK if the material was removed
      */
-    private Result processRemoveMaterial(String materialName){
+    private Result processRemoveMaterial(String material){
+        MainController.getInstance().removeMaterial(material);
         return new Result(ResultCode.OK);
     }
 }
