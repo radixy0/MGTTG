@@ -1,19 +1,20 @@
 package com.itemis.mgttg.tools;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class NumberConverterTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void emptyRomanShouldReturnZero() {
         assertEquals(0, NumberConverter.romanToInt(""));
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void MCMXCIVromanShouldEqualNineteenNinetyFour() {
         assertEquals(1994, NumberConverter.romanToInt("MCMXCIV"));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void falseCharInRomanShouldThrowIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class,
                 () -> {
@@ -21,18 +22,18 @@ class NumberConverterTest {
                 });
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void zeroToRomanShouldReturnEmptyString() {
         assertEquals("", NumberConverter.intToRoman(0));
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void negativeToRomanShouldThrowIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class,
                 () -> {
                     NumberConverter.intToRoman(-1);
                 });
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void nineteenNinetyFourToRomanShouldEqualMCMXCIV() {
         assertEquals("MCMXCIV", NumberConverter.intToRoman(1994));
     }

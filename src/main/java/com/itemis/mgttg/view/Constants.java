@@ -3,6 +3,7 @@ package com.itemis.mgttg.view;
 public class Constants {
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_BLUE = "\u001B[34m";
+    public static final String USAGE_INFO = "Usage: MGTTG.jar -f FILENAME or MGTTG.jar without parameters";
     static final String INTRO = "Greetings, traveller! If you need help, try entering \"help\"!";
     static final String OUTRO = "Until next time!";
     static final String HELP = "Available Commands: \n" +

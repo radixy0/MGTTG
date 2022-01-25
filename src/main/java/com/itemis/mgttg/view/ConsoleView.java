@@ -33,6 +33,18 @@ public class ConsoleView {
         play_outro();
     }
 
+    public void run_fromFile(String filename){
+        String[] lines = FileIOController.getLines(filename);
+        if(lines == null){
+            out.println("The specified file does not seem to exist");
+            return;
+        }
+        for(String line : lines){
+            Result result = lineProcessController.processLine(line);
+            handleResult(result);
+        }
+    }
+
     private void handleResult(Result result){
         switch(result.getResultCode()){
             case OK:
